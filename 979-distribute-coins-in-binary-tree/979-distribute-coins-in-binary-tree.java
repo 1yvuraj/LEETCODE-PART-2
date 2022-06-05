@@ -1,29 +1,33 @@
 class Solution {
-    int moves=0;
-    public static class pair{
-        int nodev;
-        int nodec;
-        pair(int nodev,int nodec)
-        {
-            this.nodev=nodev;
-            this.nodec=nodec;
+    class Pair {
+        int nodes;
+        int coins;
+
+        Pair(int nodes, int coins){
+            this.nodes = nodes;
+            this.coins = coins;
         }
     }
+    
+    int moves = 0;
+    
     public int distributeCoins(TreeNode root) {
-        help(root);
-        return  moves;
+        helper(root);
+        return moves;
     }
-    public pair help(TreeNode root) {
-        if(root==null)
-        {
-            return new pair(0,0);
+    
+    public Pair helper(TreeNode node){
+        if(node == null){
+            return new Pair(0, 0);    
         }
-        pair l=help(root.left);
-        pair r=help(root.right);
-        int nodec=l.nodec+r.nodec+1;
-        int m=l.nodev+r.nodev+root.val;
-        moves+=Math.abs(nodec-m);
-        return new pair(m,nodec);
         
+        Pair lp = helper(node.left);
+        Pair rp = helper(node.right);
+        
+        Pair mp = new Pair(0, 0);
+        mp.nodes = lp.nodes + rp.nodes + 1; // size
+        mp.coins = lp.coins + rp.coins + node.val; // sum
+        moves += Math.abs(mp.nodes - mp.coins);
+        return mp;
     }
 }
