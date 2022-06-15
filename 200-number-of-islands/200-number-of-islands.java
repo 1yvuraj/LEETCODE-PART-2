@@ -1,24 +1,30 @@
 class Solution {
     public int numIslands(char[][] grid) {
-        int count = 0;
-        boolean[][] visit = new boolean[grid.length][grid[0].length];
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[0].length; j++) {
-                if ( grid[i][j] == '1') {
-                    count++;
-                    help(grid, i, j, visit);
+        int [][]dir={{-1,0},{0,1},{0,-1},{1,0}};
+        int c=0;
+        for(int i=0;i<grid.length;i++)
+        {
+            for(int j=0;j<grid[0].length;j++)
+            {
+               
+                if(grid[i][j]=='1'){
+                dfs(grid,i,j,dir);
+                     c++;
                 }
             }
         }
-        return count;
+        return c;
     }
-
-    public void help(char[][] grid, int sr, int sc, boolean[][] visit) {
-        if (sr < 0 || sc < 0 || sr >= grid.length || sc >= grid[0].length || grid[sr][sc] == '0') return;
-        grid[sr][sc] = '0';
-        help(grid, sr + 1, sc, visit);
-        help(grid, sr, sc + 1, visit);
-        help(grid, sr - 1, sc, visit);
-        help(grid, sr, sc - 1, visit);
+    public void dfs(char[][] grid,int sr,int sc,int[][]dir) {
+        grid[sr][sc]='0';
+        for(int d=0;d<dir.length;d++)
+        {
+            
+            int r=sr+dir[d][0];
+            int c=sc+dir[d][1];
+            if(r>=0 && c>=0 && r<grid.length && c<grid[0].length && grid[r][c]=='1'){
+             dfs(grid,r,c,dir);
+            }
+        }
     }
 }
