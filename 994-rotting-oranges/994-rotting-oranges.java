@@ -1,7 +1,8 @@
 class Solution {
+
     public int orangesRotting(int[][] grid) {
         int fresh = 0;
-        int time = 0;
+        int time = 1;
         int n = grid.length;
         int m = grid[0].length;
         int[][] dir = { { -1, 0 }, { 0, -1 }, { 1, 0 }, { 0, 1 } };
@@ -16,14 +17,15 @@ class Solution {
                 }
             }
         }
-        if(fresh==0)return 0;
+        if (fresh == 0) return 0;
         while (list.size() > 0) {
             int size = list.size();
 
-            while (size-->0) {
+            while (size-- > 0) {
                 int rem = list.removeFirst();
                 int sr = rem / m;
                 int sc = rem % m;
+
                 for (int d = 0; d < dir.length; d++) {
                     int r = sr + dir[d][0];
                     int c = sc + dir[d][1];
@@ -32,11 +34,10 @@ class Solution {
                         list.addLast(r * m + c);
                         fresh--;
                         if (fresh == 0) {
-                            return time + 1;
+                            return time;
                         }
                     }
                 }
-                
             }
             time++;
         }
