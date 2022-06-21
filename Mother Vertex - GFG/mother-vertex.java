@@ -32,60 +32,11 @@ class GFG
 
 
 
-// class Solution
-// {
-//     //Function to find a Mother Vertex in the Graph.
-//      static int c=0;
-//     public int findMotherVertex(int V, ArrayList<ArrayList<Integer>>adj)
-//     {
-//       boolean[]visit=new boolean[V];
-//       LinkedList<Integer>stack=new LinkedList<>();
-//       for(int i=0;i<V;i++)
-//       {
-//           if(!visit[i])
-//           dfs(i,adj,visit,stack);
-//       }
-       
-//       int ans= stack.removeFirst();
-       
-//       dfs1(ans,adj,visit);
-//       System.out.println(c);
-//       System.out.println(V);
-//       if(c+1==V)
-//       {
-//           return ans;
-//       }
-//           return -1;
-       
-       
-//     }
-//   public  void dfs(int src,ArrayList<ArrayList<Integer>>graph,boolean[]visit,LinkedList<Integer>stack) {
-//      visit[src]=true;   
-     
-//      for(int v:graph.get(src))
-//      {
-//          if(!visit[v]){
-//              dfs(v,graph,visit,stack);
-//          }
-//      }
-//      stack.addFirst(src);
-//   }
-//   public  void dfs1(int src,ArrayList<ArrayList<Integer>>graph,boolean[]visit) {
-//      visit[src]=true;   
-//      c++;
-//      for(int v:graph.get(src))
-//      {
-//          if(!visit[v]){
-//              dfs1(v,graph,visit);
-//          }
-//      }
-     
-//   }
-// }
+
 class Solution
 {
     //Function to find a Mother Vertex in the Graph.
-      int c=0;
+    int c=0;
     public int findMotherVertex(int V, ArrayList<ArrayList<Integer>>adj)
     {
        boolean[]visit=new boolean[V];
@@ -102,10 +53,6 @@ class Solution
            }
        }
        return -1;
-       
-       
-      
-       
        
     }
   
