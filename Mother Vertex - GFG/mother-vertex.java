@@ -29,37 +29,39 @@ class GFG
     }
 }// } Driver Code Ends
 
-
-
-
-
 class Solution
 {
     //Function to find a Mother Vertex in the Graph.
-    int c=0;
+    
     public int findMotherVertex(int V, ArrayList<ArrayList<Integer>>adj)
     {
        boolean[]visit=new boolean[V];
-
+       int ans=-1;
        for(int i=0;i<V;i++)
        {
-           visit=new boolean[V];
-           if(!visit[i]){
-              c=0;
-           dfs1(i,adj,visit);
-           if(c==V)
-           {
-               return i;
-           }
-           }
+         if(visit[i]==false){
+         dfs1(i,adj,visit);
+         ans=i;
+         }
+           
        }
-       return -1;
+      Arrays.fill(visit,false);
+       dfs1(ans,adj,visit);
+       for(int i=0;i<visit.length;i++)
+       {
+         if(visit[i]==false)
+         {
+             return -1;
+         }
+           
+       }
+       return ans;
        
     }
   
   public  void dfs1(int src,ArrayList<ArrayList<Integer>>graph,boolean[]visit) {
      visit[src]=true;   
-     c++;
+    
      for(int v:graph.get(src))
      {
          if(!visit[v]){
