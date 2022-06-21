@@ -43,6 +43,7 @@ class Solution
 
        for(int i=0;i<V;i++)
        {
+           visit=new boolean[V];
            if(!visit[i]){
               c=0;
            dfs1(i,adj,visit);
