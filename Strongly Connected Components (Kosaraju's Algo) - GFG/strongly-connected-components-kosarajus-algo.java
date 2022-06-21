@@ -39,10 +39,7 @@ class Gfg
 }
 // } Driver Code Ends
 
-
 //User function Template for Java
-
-
 class Solution
 {
     //Function to find number of strongly connected components in the graph.
