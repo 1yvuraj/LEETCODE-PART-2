@@ -80,6 +80,8 @@ class Solution
        }
        int idx=0;
        while(queue.size()>0){
+           int size=queue.size();
+           while(size-->0){
            int rem=queue.removeFirst();
            ans[idx]=rem;
            idx++;
@@ -89,6 +91,7 @@ class Solution
                {
                    queue.add(nbr);
                }
+           }
            }
        }
        if(idx==V){
