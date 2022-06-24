@@ -19,12 +19,11 @@ class Solution {
             } else {
                 ans[0] = row;
                 ans[1] = col;
-                return ans;
+                return c;
             }
         }
-        ans=new int[1];
-        ans[0]=-1;
-        return ans;
+        
+        return null;
     }
 
     public int find(int x) {
