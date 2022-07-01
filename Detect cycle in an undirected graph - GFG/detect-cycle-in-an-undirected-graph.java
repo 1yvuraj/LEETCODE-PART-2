@@ -33,45 +33,31 @@ class GFG {
 
 class Solution {
     // Function to detect cycle in an undirected graph.
-     public boolean help(int V, ArrayList<ArrayList<Integer>> graph,boolean[]visit,int src) {
-          LinkedList<Integer> que = new LinkedList<>();
-        que.add(src);
-       
-        int level = 0;
-        while (que.size() != 0) {
-            int size = que.size();
-            
-            while(size-->0) {
-                int vtx = que.removeFirst();
-                if (visit[vtx]) {
-                    return true;
-                    
-                }
-
-                visit[vtx] = true;
-                for (int e : graph.get(vtx)) {
-                    if (!visit[e])
-                        que.addLast(e);
-                }
-            }
-
-            level++;
-           
-        }
-        return false;
+     public boolean dfs(int V, ArrayList<ArrayList<Integer>> graph,boolean[]visit,int src,int p) {
+      visit[src]=true;
+      for(int nbr:graph.get(src)){
+          if(!visit[nbr]){
+          if(dfs(V,graph,visit,nbr,src)){
+              return true;
+          }
+          }else if(p!=nbr){
+              return true;
+          }
+      }
+      return false;
      }
     public boolean isCycle(int V, ArrayList<ArrayList<Integer>> graph) {
          boolean[]visit=new boolean[V];
          boolean iscycle=false;
-       for(int i=0;i<V;i++){
-           if(!visit[i]){
-               iscycle= help(V,graph,visit,i);
-               if(iscycle){
-                   return true;
-               }
-           }
+        for(int i=0;i<V;i++){
+          if(!visit[i]){
+              iscycle= dfs(V,graph,visit,i,-1);
+              if(iscycle){
+                  return true;
+              }
+          }
            
-       }
-       return false;
+        }
+      return false;
     }
 }
