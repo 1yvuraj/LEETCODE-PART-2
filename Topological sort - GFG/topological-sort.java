@@ -64,6 +64,7 @@ class Solution
     {
        int[]count=new int[V];
        int[]ans=new int[V];
+       
        for(int i=0;i<V;i++)
        {
            for(int nbr:graph.get(i)){
@@ -79,6 +80,7 @@ class Solution
            }
        }
        int idx=0;
+       int level=0;
        while(queue.size()>0){
            int size=queue.size();
            while(size-->0){
@@ -93,10 +95,11 @@ class Solution
                }
            }
            }
+           level++;
        }
-       if(idx==V){
+       
            return ans;
-       }
-       return ans=new int[V];
+       
+       
     }
 }
