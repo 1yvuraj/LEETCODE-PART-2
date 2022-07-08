@@ -30,7 +30,6 @@ class GFG {
     }
 }// } Driver Code Ends
 
-
 class Solution {
     // Function to detect cycle in an undirected graph.
      public boolean dfs(int V, ArrayList<ArrayList<Integer>> graph,boolean[]visit,int src,int p) {
