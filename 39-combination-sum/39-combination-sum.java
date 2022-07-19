@@ -20,35 +20,36 @@
 //                 a.remove(a.size()-1);
 //             }
 //         }
-    
+
 //         return count;
 //     }
 
 // }
+
 class Solution {
-    public List<List<Integer>> combinationSum(int[] nums, int target) {
-        List<List<Integer>> res = new ArrayList<>();
-        if(nums.length == 0){
-            return res;
-        }
-        
-        combinationSum( nums, target, 0, res, new ArrayList<Integer>(), 0);
-        return res;
-    }
-    
-    public void combinationSum( int[] nums, int target, int idx,List<List<Integer>> res, List<Integer> temp, int ssf){
-        if( ssf == target ){
-            res.add(new ArrayList<>(temp));
+
+    public void findcombinations(int idx, int[] arr, int target, List<List<Integer>> ans, List<Integer> ds) {
+        if (idx == arr.length) {
+            if (target == 0) {
+                ans.add(new ArrayList<>(ds));
+            }
             return;
         }
-        
-        for(int i=idx;i<nums.length;i++){
-            if(ssf+nums[i]<=target){
-            temp.add(nums[i]);
-            combinationSum( nums, target,i, res, temp,ssf+nums[i]);
-            temp.remove(temp.size()-1);
-            
-            }
+
+        //pick up
+        if (arr[idx] <= target) {
+            ds.add(arr[idx]);
+            findcombinations(idx, arr, target - arr[idx], ans, ds);
+            ds.remove(ds.size() - 1);
         }
+
+        //not pick up
+        findcombinations(idx + 1, arr, target, ans, ds);
+    }
+
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> ans = new ArrayList<>();
+        findcombinations(0, candidates, target, ans, new ArrayList<>());
+        return ans;
     }
 }
