@@ -6,7 +6,7 @@ class Solution {
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
                 if(grid[i][j]==1){
-
+                    grid[i][j]=0;
                     max=Math.max(max,bfs(grid,i,j,dir));
                 }
             }
@@ -19,7 +19,7 @@ class Solution {
         LinkedList<Integer>q=new LinkedList<>();
         q.addLast(i*grid[0].length+j);
         int l=1;
-        grid[i][j]=0;
+        
         while(q.size()>0){
             int size=q.size();
             
