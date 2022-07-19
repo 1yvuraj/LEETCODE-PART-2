@@ -1,30 +1,35 @@
 class Solution {
-    
     int max=-(int)1e9;
+    int l=1;
     public int maxAreaOfIsland(int[][] grid) {
-        int[][] dir = { { -1, 0 }, { 0, 1 }, { 0, -1 }, { 1, 0 } };
-        int c = 0;
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[0].length; j++) {
-                if (grid[i][j] == 1) {
-                   
-                    int size =dfs(grid, i, j, dir);
-                    max=Math.max(max,size);
+        int[][]dir={{-1,0},{0,-1},{1,0},{0,1}};
+        boolean[][]visit=new boolean[grid.length][grid[0].length];
+        
+        for(int i=0;i<grid.length;i++)
+        {
+            
+            for(int j=0;j<grid[i].length;j++){
+                if(visit[i][j]==false && grid[i][j]==1){
+                    l=1;
+                    visit[i][j]=true;
+                    dfs(i,j,visit,dir,grid);
+                max=Math.max(max,l);
                 }
             }
         }
         return max==-(int)1e9?0:max;
     }
-    public int dfs(int[][] grid, int sr, int sc, int[][] dir) {
-        grid[sr][sc] = 0; int size=0;
-        for (int d = 0; d < dir.length; d++) {
-            int r = sr + dir[d][0];
-            int c = sc + dir[d][1];
-            if (r >= 0 && c >= 0 && r < grid.length && c < grid[0].length && grid[r][c] == 1) {
-                
-                size+=dfs(grid, r, c, dir);
+    public void dfs(int sr,int sc,boolean[][]visit,int[][]dir,int[][]grid) {
+        for(int d=0;d<dir.length;d++)
+        {
+            int r=sr+dir[d][0];
+            int c=sc+dir[d][1];
+            
+            if(r>=0 && c>=0 && r<grid.length && c<grid[0].length && grid[r][c]==1 && visit[r][c]==false){
+               visit[r][c]=true;
+                l++;
+               dfs(r,c,visit,dir,grid); 
             }
         }
-        return size+1;
     }
 }
