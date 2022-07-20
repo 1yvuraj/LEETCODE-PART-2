@@ -14,7 +14,7 @@ class Solution {
             rank[i] = 1;
         }
         for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[i].length; j++) {
+            for (int j = 0; j < grid[0].length; j++) {
                 if (grid[i][j] == 1) {
                     int x = find(i * grid[0].length + j);
                     for (int d = 0; d < dir.length; d++) {
