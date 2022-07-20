@@ -16,7 +16,7 @@ class Solution {
     }
     public boolean dfs(int sr, int sc, int[][] dir, int[][] grid1,int[][] grid2) {
         
-        boolean res = grid1[sr][sc]==1;
+        boolean res =true;
         for (int d = 0; d < dir.length; d++) {
             int r = sr + dir[d][0];
             int c = sc + dir[d][1];
@@ -27,6 +27,6 @@ class Solution {
                 res = dfs(r, c, dir, grid1,grid2)&&res;
             }
         }
-        return res ;
+        return res && (grid1[sr][sc]==1);
     }
 }
