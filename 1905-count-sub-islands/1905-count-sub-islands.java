@@ -1,5 +1,4 @@
 class Solution {
-
     public int countSubIslands(int[][] grid1, int[][] grid2) {
         int[][] dir = { { -1, 0 }, { 0, -1 }, { 1, 0 }, { 0, 1 } };
 
@@ -15,10 +14,9 @@ class Solution {
         }
         return ans;
     }
-
     public boolean dfs(int sr, int sc, int[][] dir, int[][] grid1,int[][] grid2) {
-        boolean res = true;
         
+        boolean res = grid1[sr][sc]==1;
         for (int d = 0; d < dir.length; d++) {
             int r = sr + dir[d][0];
             int c = sc + dir[d][1];
@@ -26,9 +24,9 @@ class Solution {
             if (r >= 0 && c >= 0 && r < grid2.length && c < grid2[0].length && grid2[r][c] == 1) {
                 grid2[r][c] = 0;
 
-                res = dfs(r, c, dir, grid1,grid2) &&res;
+                res = dfs(r, c, dir, grid1,grid2)&&res;
             }
         }
-        return res && (grid1[sr][sc] == 1);
+        return res ;
     }
 }
