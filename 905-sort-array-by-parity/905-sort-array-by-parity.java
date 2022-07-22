@@ -12,13 +12,9 @@ class Solution {
                 i++;
             }
         }
-         j=0;
         
-        for(int k=0;k<nums.length;k++){
-            if(nums[k]%2==0){
-                j++;
-            }
-        }
+        
+       
         for(int k=0;k<copy.length;k++){
             if(copy[k]%2!=0){
                 nums[j++]=copy[k];
