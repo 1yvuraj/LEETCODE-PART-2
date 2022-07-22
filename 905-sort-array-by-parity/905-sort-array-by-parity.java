@@ -1,31 +1,34 @@
 class Solution {
     public int[] sortArrayByParity(int[] nums) {
-         int i = 0;
+        int i = 0;
         int j = 0;
         int[] copy = nums.clone();
-        int n = nums.length;
+        while(i < nums.length) {
+            if(nums[i] % 2 == 0) {
+                swap(nums, i, j);
+                i++;
+                j++;
+            } else {
+                i++;
+            }
+        }
+         j=0;
         
-        while(i < n){
-            if(nums[i] % 2 == 1){
-                i++;
-            }else{
-                swap(nums,i,j);
-                i++;
+        for(int k=0;k<nums.length;k++){
+            if(nums[k]%2==0){
                 j++;
             }
         }
-        i = 0;
-        for(;i<n; i++){
-            if(copy[i] % 2 != 0){
-                nums[j++] = copy[i];
+        for(int k=0;k<copy.length;k++){
+            if(copy[k]%2!=0){
+                nums[j++]=copy[k];
             }
         }
         return nums;
     }
-    private static void swap(int[] nums, int i, int j)
-    {
-        int t = nums[i];
-        nums[i] = nums[j];
-        nums[j] = t;
+    private  void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
 }
