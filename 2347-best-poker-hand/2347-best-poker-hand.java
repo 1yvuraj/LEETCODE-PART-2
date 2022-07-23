@@ -1,29 +1,31 @@
 class Solution {
     public String bestHand(int[] ranks, char[] suits) {
-        int c = 1;
-        for (int i = 1; i < suits.length; i++) {
-            if (suits[i] != suits[i - 1]) {
-                break;
+        HashMap<Integer,ArrayList<Character>> hm=new HashMap<>();
+        for(int i=0;i<ranks.length;i++){
+            if(!hm.containsKey(ranks[i])){
+                hm.put(ranks[i],new ArrayList<>());
             }
-            c++;
+            hm.get(ranks[i]).add(suits[i]);
         }
-        if (c == 5) {
-            return "Flush";
+        
+        
+        for(int key:hm.keySet()){
+            if(hm.get(key).size()>=3){
+                return "Three of a Kind";
+            }
+            else if(hm.get(key).size()==2){
+                return "Pair";
+            }
         }
-        int[] arr = new int[14];
-        int max = -(int) 1e9;
-        for (int i = 0; i < ranks.length; i++) {
-            arr[ranks[i]]++;
+        
+        char ch=suits[0];
+        for(int i=1;i<ranks.length;i++){
+            if(hm.get(ranks[i]).get(0)!=ch){
+                return "High Card";
+            }
         }
-        for (int i = 0; i < arr.length; i++) {
-            max = Math.max(max, arr[i]);
-        }
-        System.out.println(max);
-        if (max == 3 || max == 4) {
-            return "Three of a Kind";
-        } else if (max == 2) {
-            return "Pair";
-        }
-        return "High Card";
+        
+        return "Flush";
+        
     }
 }
