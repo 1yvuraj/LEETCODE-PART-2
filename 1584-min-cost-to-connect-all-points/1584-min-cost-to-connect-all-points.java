@@ -15,6 +15,7 @@ class Solution {
         });
         for(int i=0;i<p.length;i++)p[i]=i;
         int cost=0;
+        int nooFedge=0;
         for(int[]nbr:graph){
             int wt=nbr[0];
             int u=nbr[1];
@@ -24,7 +25,9 @@ class Solution {
             if(x!=y){
                 p[x]=y;
                 cost+=wt;
+                nooFedge++;
             }
+            if(nooFedge>=n)break;
             
         }
         return cost;
