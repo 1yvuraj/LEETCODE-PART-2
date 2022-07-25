@@ -34,6 +34,7 @@ class Solution {
             } else {
                 p[i] = i;
             }
+            r[i]=1;
         }
         for (int i = 0; i < grid.length; i++) {
             String s = grid[i];
@@ -47,29 +48,5 @@ class Solution {
         }
         return count;
     }
-//      public int regionsBySlashes(String[] grid) {
-//         int n = grid.length;
-//         int N = n + 1;
-//         p = new int[N * N];
-//         r = new int[N * N];
-//         for (int i = 0; i < N * N; i++)
-//             if (i / N == 0 || i % N == 0 || i / N == N - 1 || i % N == N - 1)
-//                 p[i] = 0;
-//             else
-//                 p[i] = i;
-
-//         int regions = 1;
-//         for (int r = 0; r < n; r++) {
-//             String s = grid[r];
-//             for (int c = 0; c < s.length(); c++) {
-//                 if (s.charAt(c) == '/')
-//                     regions += union(findPar(r * N + c + 1), findPar((r + 1) * N + c));
-//                 else if (s.charAt(c) == '\\')
-//                     regions += union(findPar(r * N + c), findPar((r + 1) * N + c + 1));
-//             }
-//         }
-
-//         return regions;
-//     }
 
 }
