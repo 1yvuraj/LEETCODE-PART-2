@@ -1,45 +1,47 @@
 class Solution {
-    int[]p;
+    public class pair implements Comparable<pair> {
+        int src;
+        int wt;
+        pair(int src, int wt) {
+            this.src = src;
+            
+            this.wt = wt;
+        }
+        public int compareTo(pair o) {
+            return this.wt - o.wt;
+        }
+    }
     public int minCostConnectPoints(int[][] points) {
-        int n=points.length;
-        ArrayList<int[]>graph=new ArrayList<>();
-        p=new int[n];
-        for(int i=0;i<points.length;i++){
-            for(int j=i+1;j<points.length;j++){
-                graph.add(new int[]{distace(points,i,j),i,j});
+        int n = points.length;
+        ArrayList<pair>[] graph = new ArrayList[n];
+        for (int i = 0; i < n; i++) graph[i] = new ArrayList<>();
+        for (int i = 0; i < points.length; i++) {
+            for (int j = i + 1; j < points.length; j++) {
+                graph[i].add(new pair(j, distace(points, i, j)));
+                 graph[j].add(new pair(i, distace(points, i, j)));
                 
             }
         }
-        Collections.sort(graph,(a,b)->{
-            return a[0]-b[0];
-        });
-        for(int i=0;i<p.length;i++)p[i]=i;
-        int cost=0;
-        int nooFedge=0;
-        for(int[]nbr:graph){
-            int wt=nbr[0];
-            int u=nbr[1];
-            int v=nbr[2];
-            int x=findPar(u);
-            int y=findPar(v);
-            if(x!=y){
-                p[x]=y;
-                cost+=wt;
-                nooFedge++;
+        boolean[] vis = new boolean[n];
+        int cost = 0;
+        PriorityQueue<pair> pq = new PriorityQueue<>();
+        pq.add(new pair(0, 0));
+        while (pq.size() != 0) {
+            pair p = pq.remove();
+            if (vis[p.src]) continue;
+
+            vis[p.src] = true;
+            cost += p.wt;
+
+            for (pair e : graph[p.src]) {
+                if (!vis[e.src]) {
+                    pq.add(new pair(e.src, e.wt));
+                }
             }
-            if(nooFedge>=n)break;
-            
         }
         return cost;
-            
-        
     }
-    public  int findPar(int u) {
-        return p[u] == u ? u : (p[u] = findPar(p[u]));
-    }
-
-     public int distace(int[][] points,int i ,int j) {
-        return Math.abs(points[i][0]-points[j][0])+Math.abs(points[i][1]-points[j][1]);
-        
+    public int distace(int[][] points, int i, int j) {
+        return Math.abs(points[i][0] - points[j][0]) + Math.abs(points[i][1] - points[j][1]);
     }
 }
