@@ -13,8 +13,8 @@ class Solution {
         }
         int[] A = new int[n];
         int[] B = new int[n];
-        Arrays.fill(A, Integer.MAX_VALUE);
-        Arrays.fill(B, Integer.MAX_VALUE);
+        Arrays.fill(A, -1);
+        Arrays.fill(B, -1);
         distace(graph, node1, node2, node1, A);
         distace(graph, node1, node2, node2, B);
 
@@ -24,7 +24,7 @@ class Solution {
         for (int i = 0; i < A.length; i++) {
             // node is not reacheable so discard
             System.out.println(B[i]);
-            if (A[i] == Integer.MAX_VALUE || B[i] == Integer.MAX_VALUE) continue;
+            if (A[i] == -1 || B[i] == -1) continue;
             int tempDist = Math.max(A[i], B[i]);
             // take the node with min dist from node1 and node2
             if (tempDist < minDist) {
