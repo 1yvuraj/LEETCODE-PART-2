@@ -1,5 +1,4 @@
 class Solution {
-
     public int minimumOperations(int[] nums) {
         int[] arr = new int[101];
         Arrays.sort(nums);
