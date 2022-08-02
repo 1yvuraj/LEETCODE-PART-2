@@ -30,8 +30,6 @@ class Solution {
                 return a[1] - b[1];
             }
         );
-        //LinkedList<int[]>q=new LinkedList<>();
-        //Queue<int[]> q = new ArrayDeque<>();
         Arrays.fill(distace, Integer.MAX_VALUE);
         q.add(new int[] { srs, 0 });
         int dist = 0;
@@ -43,7 +41,7 @@ class Solution {
                 visit[rem[0]] = true;
                 distace[rem[0]] = rem[1];
                 int nbr = edges[rem[0]];
-                if (nbr != -1 && !visit[nbr]) {
+                if (nbr != -1 && distace[nbr]==Integer.MAX_VALUE) {
                     q.add(new int[] { nbr, rem[1] + 1 });
                 }
             }
