@@ -3,9 +3,9 @@ class Solution {
     public int longestCycle(int[] edges) {
         max = -(int) 1e9;
         boolean[] visit = new boolean[edges.length];
-       for(int i:edges){
+       for(int i=0 ;i<edges.length;i++){
             HashMap<Integer, Integer> map = new HashMap<>();
-            if (i==-1 ||visit[i]) continue;
+            if (edges[i]==-1 ||visit[i]) continue;
             dfs(edges, i, 0, map, visit);
         }
         return max==-(int)1e9?-1:max;
