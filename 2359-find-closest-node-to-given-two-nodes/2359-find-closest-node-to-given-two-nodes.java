@@ -32,20 +32,21 @@ class Solution {
         //         return a[1] - b[1];
         //     }
         // );
-        LinkedList<int[]>q=new LinkedList<>();
+        //LinkedList<int[]>q=new LinkedList<>();
+        Queue<int[]> q = new ArrayDeque<>();
         Arrays.fill(distace, -1);
-        q.addLast(new int[] { srs, 0 });
+        q.add(new int[] { srs, 0 });
         int dist = 0;
         while (q.size() > 0) {
             int size = q.size();
             while (size-- > 0) {
-                int[] rem = q.removeFirst();
+                int[] rem = q.remove();
                 if (visit[rem[0]]) continue;
                 visit[rem[0]] = true;
                 distace[rem[0]] = rem[1];
                 int nbr = edges[rem[0]];
                 if (nbr != -1 && !visit[nbr]) {
-                    q.addLast(new int[] { nbr, rem[1] + 1 });
+                    q.add(new int[] { nbr, rem[1] + 1 });
                 }
             }
         }
