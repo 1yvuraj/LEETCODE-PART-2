@@ -1,15 +1,14 @@
 class Solution {
     int[] parent;
-    int[] rank;
-
+    
     public int findCircleNum(int[][] isConnected) {
         int n = isConnected.length;
         int m = isConnected[0].length;
         parent=new int[n+1];
-        rank=new int[n+1];
+       
         for (int i = 0; i <= n; i++) {
             parent[i] = i;
-            rank[i] = 1;
+            
         }
         int count=n;
         for (int i = 0; i < n; i++) {
