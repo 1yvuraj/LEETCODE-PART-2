@@ -18,7 +18,7 @@ class Solution {
                     int x = findPar(i);
                     int y = findPar(j);
                     if (x != y) {
-                        union(x, y);
+                        parent[x]=y;
                         count--;
                     }
                 }
@@ -31,14 +31,14 @@ class Solution {
         return parent[u] == u ? u : (parent[u] = findPar(parent[u]));
     }
 
-    public void union(int s1, int s2) {
-        if (rank[s1] < rank[s2]) {
-            parent[s1] = s2;
-        } else if (rank[s1] > rank[s2]) {
-            parent[s2] = s1;
-        } else {
-            parent[s1] = s2;
-            rank[s1]++;
-        }
-    }
+    // public void union(int s1, int s2) {
+    //     if (rank[s1] < rank[s2]) {
+    //         parent[s1] = s2;
+    //     } else if (rank[s1] > rank[s2]) {
+    //         parent[s2] = s1;
+    //     } else {
+    //         parent[s1] = s2;
+    //         rank[s1]++;
+    //     }
+    // }
 }
