@@ -13,8 +13,6 @@ class Solution {
         }
         int[] A = new int[n];
         int[] B = new int[n];
-        Arrays.fill(A, -1);
-        Arrays.fill(B, -1);
         distace(graph, node1, node2, node1, A);
         distace(graph, node1, node2, node2, B);
 
@@ -35,27 +33,29 @@ class Solution {
         return resNode;
     }
 
-    public void distace(ArrayList<ArrayList<Integer>> graph, int node1, int node2, int srs, int[] distace) {
+    public int[] distace(ArrayList<ArrayList<Integer>> graph, int node1, int node2, int srs, int[] distace) {
         int n = graph.size();
         boolean[] visit = new boolean[n];
-        LinkedList<Integer> q = new LinkedList<>();
-
-        q.add(srs);
+        PriorityQueue<int[]> q = new PriorityQueue<>((a, b) -> {
+        return a[1] - b[1];
+         });
+        Arrays.fill(distace, -1);
+        q.add(new int[]{ srs, 0 });
         int dist = 0;
         while (q.size() > 0) {
             int size = q.size();
             while (size-- > 0) {
-                int rem = q.removeFirst();
-                if (visit[rem]) continue;
-                visit[rem] = true;
-                distace[rem] = dist;
-                for (int nbr : graph.get(rem)) {
+                int[] rem = q.remove();
+                if (visit[rem[0]]) continue;
+                visit[rem[0]] = true;
+                distace[rem[0]] = rem[1];
+                for (int nbr : graph.get(rem[0])) {
                     if (!visit[nbr]) {
-                        q.addLast(nbr);
+                        q.add(new int[] { nbr, rem[1] + 1 });
                     }
                 }
             }
-            dist++;
         }
+        return distace;
     }
 }
