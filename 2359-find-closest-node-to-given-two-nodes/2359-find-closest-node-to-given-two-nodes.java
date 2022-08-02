@@ -11,9 +11,7 @@ class Solution {
 
         int minDist = Integer.MAX_VALUE, resNode = -1;
         for (int i = 0; i < A.length; i++) {
-            // node is not reacheable so discard
-            System.out.println(B[i]);
-            if (A[i] == -1 || B[i] == -1) continue;
+            // node is not reacheable so discar
             int tempDist = Math.max(A[i], B[i]);
             // take the node with min dist from node1 and node2
             if (tempDist < minDist) {
@@ -34,7 +32,7 @@ class Solution {
         // );
         //LinkedList<int[]>q=new LinkedList<>();
         Queue<int[]> q = new ArrayDeque<>();
-        Arrays.fill(distace, -1);
+        Arrays.fill(distace, Integer.MAX_VALUE);
         q.add(new int[] { srs, 0 });
         int dist = 0;
         while (q.size() > 0) {
