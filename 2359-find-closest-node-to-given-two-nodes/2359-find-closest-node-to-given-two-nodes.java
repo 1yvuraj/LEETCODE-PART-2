@@ -27,24 +27,25 @@ class Solution {
     public int[] distace(int[] edges, int node1, int node2, int srs, int[] distace) {
         int n = edges.length;
         boolean[] visit = new boolean[n];
-        PriorityQueue<int[]> q = new PriorityQueue<>(
-            (a, b) -> {
-                return a[1] - b[1];
-            }
-        );
+        // PriorityQueue<int[]> q = new PriorityQueue<>(
+        //     (a, b) -> {
+        //         return a[1] - b[1];
+        //     }
+        // );
+        LinkedList<int[]>q=new LinkedList<>();
         Arrays.fill(distace, -1);
-        q.add(new int[] { srs, 0 });
+        q.addLast(new int[] { srs, 0 });
         int dist = 0;
         while (q.size() > 0) {
             int size = q.size();
             while (size-- > 0) {
-                int[] rem = q.remove();
+                int[] rem = q.removeFirst();
                 if (visit[rem[0]]) continue;
                 visit[rem[0]] = true;
                 distace[rem[0]] = rem[1];
                 int nbr = edges[rem[0]];
                 if (nbr != -1 && !visit[nbr]) {
-                    q.add(new int[] { nbr, rem[1] + 1 });
+                    q.addLast(new int[] { nbr, rem[1] + 1 });
                 }
             }
         }
