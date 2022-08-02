@@ -25,13 +25,13 @@ class Solution {
     public int[] distace(int[] edges, int node1, int node2, int srs, int[] distace) {
         int n = edges.length;
         boolean[] visit = new boolean[n];
-        // PriorityQueue<int[]> q = new PriorityQueue<>(
-        //     (a, b) -> {
-        //         return a[1] - b[1];
-        //     }
-        // );
+        PriorityQueue<int[]> q = new PriorityQueue<>(
+            (a, b) -> {
+                return a[1] - b[1];
+            }
+        );
         //LinkedList<int[]>q=new LinkedList<>();
-        Queue<int[]> q = new ArrayDeque<>();
+        //Queue<int[]> q = new ArrayDeque<>();
         Arrays.fill(distace, Integer.MAX_VALUE);
         q.add(new int[] { srs, 0 });
         int dist = 0;
