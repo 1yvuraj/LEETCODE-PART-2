@@ -16,7 +16,7 @@ class Solution {
             
         }
        
-        return max;
+        return max<0?0:max;
         
      }
 }
