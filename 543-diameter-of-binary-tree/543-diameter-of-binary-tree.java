@@ -1,21 +1,34 @@
 
 class Solution {
-    int max=-(int)1e9;
-    public int diameterOfBinaryTree(TreeNode root) {
-        // int []max=new int[1];
-        help(root);
-        return max;
+    
+    public class pair{
+            int ht=-1;
+            int dia=0;
+            
+            pair(int ht,int dia){
+                this.ht = ht;
+                this.dia = dia;
+            }
     }
-    public int help(TreeNode root) {
-        if(root==null)
-        {
-            return -1;
+    
+    public pair diameterOfBinaryTree_(TreeNode root){
+        if(root==null){
+            pair p = new pair(-1,0);
+            
+            return p;
         }
-        int l=help(root.left);
-        int r=help(root.right);
-        if(l+r+2>max){
-            max=l+r+2;
-        }
-        return Math.max(l,r)+1;
+        
+        pair lp = diameterOfBinaryTree_(root.left);
+        pair rp = diameterOfBinaryTree_(root.right);
+        
+        pair mp = new pair(Math.max(lp.ht,rp.ht)+1,Math.max(lp.ht+rp.ht+2,Math.max(lp.dia,rp.dia)));
+        
+        
+        return mp;
+    }
+    
+    public int diameterOfBinaryTree(TreeNode root) {
+        pair ans = diameterOfBinaryTree_(root);
+        return ans.dia;
     }
 }
