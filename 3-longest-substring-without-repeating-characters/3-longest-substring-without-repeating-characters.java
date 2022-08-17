@@ -7,9 +7,19 @@ class Solution {
         int[] freq = new int[128]; // vector<int> freq(128,0);
 
         while (ei < n) {
-            if (freq[s.charAt(ei++)]++ > 0) count++;
+            if (freq[s.charAt(ei)] == 1) {
+                count++;
+            }
+            freq[s.charAt(ei)]++;
+            ei++;
 
-            while (count > 0) if (freq[s.charAt(si++)]-- > 1) count--;
+            while (count > 0) {
+                if (freq[s.charAt(si)] == 2) {
+                    count--;
+                }
+                freq[s.charAt(si)]--;
+                si++;
+            }
 
             len = Math.max(len, ei - si);
         }
