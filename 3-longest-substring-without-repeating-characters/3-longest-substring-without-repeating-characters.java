@@ -1,24 +1,23 @@
 class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        if (s.length() <= 1)
+            return s.length();
 
-    public int lengthOfLongestSubstring(String str) {
-         if(str.length() == 0){
-            return 0;
+        int n = s.length(), si = 0, ei = 0, count = 0, len = 0;
+        int[] freq = new int[128]; // vector<int> freq(128,0);
+
+        
+        while (ei < n) {
+            if (freq[s.charAt(ei++)]++ > 0)
+                count++;
+
+            while (count > 0)
+                if (freq[s.charAt(si++)]-- > 1)
+                    count--;
+
+            len=Math.max(len,ei-si);
         }
-        HashMap<Character,Integer> map = new HashMap<>();
-        int ans = 1;
-        for(int i = 0, j = 0 ; i < str.length(); i++){
-            char ch = str.charAt(i);
-            while(map.containsKey(ch)){
-                char chj = str.charAt(j);
-                map.put(chj,map.get(chj) - 1);
-                if(map.get(chj) <= 0){
-                    map.remove(chj);
-                    ans = Math.max(ans,i - j);
-                }
-                j++;
-            }
-            map.put(ch,map.getOrDefault(ch,0) + 1);
-        }
-        return Math.max(ans,map.size());
+        return len;
     }
+        
 }
