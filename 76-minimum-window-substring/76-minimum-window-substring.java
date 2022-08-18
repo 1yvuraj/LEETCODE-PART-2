@@ -1,16 +1,15 @@
 class Solution {
 
     public String minWindow(String s, String t) {
-        int ns = s.length(), nt = t.length(), si = 0, ei = 0, count = nt, len = (int) 1e9;
-        int gsi=0;
-        int gei=0;
+      int ns = s.length(), nt = t.length(), si = 0, ei = 0, count = nt, len = (int) 1e9;
+       
         String ans = "";
         int[] freq = new int[128];
         for (int i = 0; i < nt; i++) {
             freq[t.charAt(i)]++;
         }
         while (ei < ns) {
-            if (freq[s.charAt(ei)] > 0) count--;
+            if (freq[s.charAt(ei)]>0) count--;
             freq[s.charAt(ei)]--;
             ei++;
 
@@ -19,6 +18,8 @@ class Solution {
                     ans=s.substring(si,ei);
                     len = ei - si;
                 }
+                //mtlb ecess me nhi hai is lia count increase kia
+                
                 if(freq[s.charAt(si)]==0)count++;
                 freq[s.charAt(si)]++;
                 si++;
