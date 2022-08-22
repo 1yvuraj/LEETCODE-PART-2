@@ -1,52 +1,64 @@
 class Solution {
-    public class pair{
+    class Pair {
         int bus;
         int count;
-        pair(int bus,int count){
-            this.bus=bus;
-            this.count=count;
+        
+        Pair(int bus, int count){
+            this.bus = bus;
+            this.count = count;
         }
     }
+    
+    
     public int numBusesToDestination(int[][] routes, int source, int target) {
-        if(target==source)return 0;
-        HashMap<Integer,HashSet<Integer>>map=new HashMap<>();
-        for(int i=0;i<routes.length;i++)
-        {
-            for(int stop:routes[i]){
-                if(map.containsKey(stop)==false){
-                    map.put(stop,new HashSet<>());
+        if(source == target){
+            return 0;
+        }
+        
+        HashMap<Integer, HashSet<Integer>> map = new HashMap<>();
+        
+        for(int bus = 0; bus < routes.length; bus++){
+            for(int stop: routes[bus]){
+                if(!map.containsKey(stop)){
+                    map.put(stop, new HashSet<>());
                 }
-                map.get(stop).add(i);
+                map.get(stop).add(bus);
             }
         }
-        LinkedList<pair>list=new LinkedList<>();
-        for(int stop:map.get(source)){
-            list.addLast(new pair(stop,1));
+        
+        ArrayDeque<Pair> queue = new ArrayDeque<>();
+        for(int bus: map.get(source)){
+            queue.add(new Pair(bus, 1));
         }
-        boolean[]visit=new boolean[routes.length];
-        while(list.size()>0){
-            pair rem=list.removeFirst();
-            if(visit[rem.bus]==true)
-            {
+        
+        boolean[] visited = new boolean[routes.length];
+        while(queue.size() > 0){
+            // remove
+            Pair rem = queue.remove();
+            
+            // mark*
+            if(visited[rem.bus]){
                 continue;
             }
-            visit[rem.bus]=true;
-            for(int stop:routes[rem.bus])
-            {
-                if(stop==target)
-                {
+            visited[rem.bus] = true;
+            
+            // work = check if this is final bus
+            for(int stop: routes[rem.bus]){
+                if(stop == target){
                     return rem.count;
                 }
             }
-            for(int stop:routes[rem.bus]){
-                for(int bus:map.get(stop)){
-                    if(visit[bus]==false){
-                    list.addLast(new pair(bus,rem.count+1));
+            
+            // add neighbors
+            for(int stop: routes[rem.bus]){
+                for(int nbus: map.get(stop)){
+                    if(visited[nbus] == false){
+                        queue.add(new Pair(nbus, rem.count + 1));
                     }
                 }
             }
-            
         }
+        
         return -1;
     }
 }
