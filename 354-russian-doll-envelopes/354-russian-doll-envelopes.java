@@ -1,28 +1,30 @@
 class Solution {
+
     public int maxEnvelopes(int[][] arr) {
-         int n = arr.length;
-        Arrays.sort(arr,(p,q)-> p[0]==q[0] ? q[1]-p[1] : p[0]-q[0]);
-        
-         int dp[] = new int[arr.length];
-    int len = 0;
-    for(int[] envelope : arr){
-        int index = binarySearch(dp, 0, len, envelope[1]);
-        
-        dp[index] = envelope[1];
-        if(index == len)
-            len++;
+        int n = arr.length;
+        Arrays.sort(arr, (p, q) -> p[0] == q[0] ? q[1] - p[1] : p[0] - q[0]);
+        // O(NlogN)
+
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            int idx = binarySearch(list, arr[i][1]);
+            if (idx == list.size()) list.add(arr[i][1]); else list.set(idx, arr[i][1]);
+        }
+
+        return list.size();
     }
-    return len;
-        
+
+    private  int binarySearch(List<Integer> list, int num) {
+        int li = 0, ri = list.size();
+        while (li < ri) {
+            int mid = (li + ri) / 2;
+            if (num <= list.get(mid))
+                ri = mid;
+            else
+                li = mid + 1;
+        }
+
+        return li;
     }
-    
-    public int binarySearch(int[] dp,int si, int ei, int target) {
-         while(si<ei){
-             int mid = si+(ei-si)/2;
-             if(dp[mid] == target) return mid;
-             else if(dp[mid] > target) ei = mid;
-             else  si = mid+1;
-         }
-        return si;
-    }
+
 }
