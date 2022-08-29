@@ -2,7 +2,7 @@ class Solution {
 
     public int orangesRotting(int[][] grid) {
         int fresh = 0;
-        int time = 0;
+        int time = -1;
         int n = grid.length;
         int m = grid[0].length;
         int[][] dir = { { -1, 0 }, { 0, -1 }, { 1, 0 }, { 0, 1 } };
@@ -37,16 +37,12 @@ class Solution {
                         grid[r][c]=2;
                         q.addLast(r*m+c);
                         fresh--;
-                        if(fresh==0)
-                        {
-                            return time+1;
-                        }
                     }
                 }
                 
             }
             time++;
         }
-        return -1;
+        return fresh>0?-1:time;
     }
 }
