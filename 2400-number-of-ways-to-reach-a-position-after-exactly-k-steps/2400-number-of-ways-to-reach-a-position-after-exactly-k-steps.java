@@ -1,6 +1,6 @@
 class Solution {
     public int numberOfWays(int startPos, int endPos, int k) {
-        Integer[][]dp=new Integer[4001][1001];
+        Integer[][]dp=new Integer[3001][1001];
         return help( startPos,  endPos,  k,dp);
     }
     public int help(int startPos, int endPos, int k, Integer[][]dp) {
