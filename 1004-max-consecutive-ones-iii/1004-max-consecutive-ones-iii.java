@@ -1,25 +1,21 @@
 class Solution {
-
-    public int longestOnes(int[] s, int k) {
-        int n = s.length, si = 0, ei = 0, count = 0, len = 0;
-        while (ei < n) {
-            //kuki distict character dekhne hai to zero kia hai
-            if (s[ei] == 0) {
+    public int longestOnes(int[] nums, int k) {
+        int count=0,si=0,ei=0;
+        int len=0;
+        while(ei<nums.length){
+            if(nums[ei]==0){
                 count++;
             }
             ei++;
-            //kuki do distint hone chia
-            while (count > k) {
-                //matlb 2 distint character bache hai to count decrese
-
-                if (s[si] == 0) {
-                    count--;
-                }
+            while(count>k){
+               
+                if(nums[si]==0)count--;
                 si++;
                 
             }
-            len = Math.max(len, ei - si);
+             len=Math.max(len,ei-si);
         }
+       
         return len;
     }
 }
