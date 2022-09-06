@@ -2,7 +2,7 @@ class Solution {
 
     public int nextGreaterElement(int n) {
         long m=n;
-        char[] number =(""+m).toCharArray();
+        char[] number =String.valueOf(m).toCharArray();
         int idx = -1;
         for (int i = number.length - 1; i > 0; i--) {
             if (number[i - 1] < number[i]) {
