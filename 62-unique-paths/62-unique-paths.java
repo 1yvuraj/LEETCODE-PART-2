@@ -1,7 +1,7 @@
 class Solution {
     int[][]dir={{1,0},{0,1}};
     public int uniquePaths(int m, int n) {
-        int[][] dp = new int[m + 1][n + 1];
+        int[][] dp = new int[m][n];
         return help( 0,0,m - 1, n - 1, dp);
     }
     public int help( int sr,int sc,int er, int ec, int[][] dp) {
