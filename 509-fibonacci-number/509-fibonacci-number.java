@@ -3,11 +3,14 @@ class Solution {
         int[]dp=new int[n+1];
         return help(n,dp);
     }
-     public int help(int n,int[]dp) {
-        if(n==0)return dp[n]=0;
-        if(n==1)return dp[n]=1;
-        if(dp[n]!=0)return dp[n];
-        int f1=help(n-1,dp)+help(n-2,dp);
-        return dp[n]=f1;
+     public int help(int N,int[]dp) {
+        for(int n=0;n<=N;n++){
+        if(n<=1){
+            dp[n]=n;
+            continue;
+        }
+        dp[n]=dp[n-1]+dp[n-2];
+        }
+        return dp[N];
     }
 }
