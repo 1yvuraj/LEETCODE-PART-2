@@ -10,6 +10,9 @@
  */
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        if(list1==null || list2==null){
+            return list1==null?list2:list1;
+        }
         ListNode dummy=new ListNode(-10000);
         ListNode pre=dummy;
         ListNode cur1=list1;
@@ -22,7 +25,7 @@ class Solution {
                 pre.next=cur2;
                 cur2=cur2.next;
             }
-            if(pre!=null) pre=pre.next;
+            if(pre!=null)  pre=pre.next;
         }
         if(cur1!=null)pre.next=cur1;
         if(cur2!=null)pre.next=cur2;
