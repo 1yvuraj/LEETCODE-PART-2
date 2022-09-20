@@ -1,5 +1,4 @@
 class Solution {
-
     public boolean isMatch(String s, String p) {
         p = Match(p);
         Boolean[][] dp = new Boolean[s.length() + 1][p.length() + 1];
@@ -8,9 +7,7 @@ class Solution {
 
     public boolean help(String s, String p, int n, int m, Boolean[][] dp) {
         if (n == 0 || m == 0) {
-            if (n == 0 && m == 0) return dp[n][m] = true; 
-            else if (m == 1 && p.charAt(m - 1) == '*') return dp[n][m] = true; 
-            else return dp[n][m] = false;
+            if (n == 0 && m == 0) return dp[n][m] = true; else if (m == 1 && p.charAt(m - 1) == '*') return dp[n][m] = true; else return dp[n][m] = false;
         }
         if (dp[n][m] != null) return dp[n][m];
         char ch1 = s.charAt(n - 1);
@@ -33,7 +30,7 @@ class Solution {
         sb.append(s.charAt(0));
         int i = 1;
         while (i < s.length()) {
-            while (i < s.length() && s.charAt(i) == '*' && s.charAt(i - 1) == '*') {
+            while (i < s.length() && sb.charAt(sb.length() - 1) == '*' && s.charAt(i) == '*') {
                 i++;
             }
             if (i < s.length()) sb.append(s.charAt(i));
