@@ -14,50 +14,30 @@
  * }
  */
 class Solution {
+    ArrayList<Integer>ans=new ArrayList<>();
+    int i=0;
     public void recoverTree(TreeNode root) {
-        TreeNode cur = root;
-        TreeNode n1 = null;
-        TreeNode n2 = null;
-        TreeNode prev = null;
-        while (cur != null) {
-            if (cur.left == null) {
-                if(prev != null && prev.val > cur.val) {
-                    if(n1 == null) {
-                        n1 = prev;
-                        n2 = cur;
-                    } else {
-                        n2 = cur;
-                    }
-                }
-                prev = cur;
-                cur = cur.right;
-            } else {
-                TreeNode p = cur.left;
-                while (p.right != null && p.right != cur) {
-                    p = p.right;
-                }
-                if (p.right == null) {
-                    p.right = cur;
-                    cur = cur.left;
-                }
-                if(p.right == cur){
-                    if (prev != null && prev.val > cur.val) {
-                        if (n1 == null) {
-                            n1 = prev;
-                            n2 = cur;
-                        } else {
-                            n2 = cur;
-                        }
-                    }
-                    prev = cur;
-                    p.right = null;
-                    cur = cur.right;
-                }
-            }
-        }
-        int temp=n1.val;
-        n1.val=n2.val;
-        n2.val=temp;
+        ans=new ArrayList<>();
+        i=0;
+        help(root);
+        Collections.sort(ans);
+        help1(root);
+    }
+    public void help(TreeNode root) {
+       if(root==null)return;
+       help(root.left);
+       ans.add(root.val);
+       help(root.right);
+        
+    }
+    public void help1(TreeNode root) {
+       if(root==null)return;
+       help1(root.left);
+       if(root.val!=ans.get(i)){
+          root.val=ans.get(i);
+       }
+       i++;
+       help1(root.right);
         
     }
 }
