@@ -1,7 +1,6 @@
 class Solution {
     public int coinChange(int[] coins, int target) {
         int[]dp = new int[target + 1];
-        Arrays.fill(dp, -1);
         int ans=coinChangeCombination_IN(coins, target, "", dp);
         return ans==1000000001?-1:ans;
     }
@@ -10,7 +9,7 @@ class Solution {
             System.out.println(psf);
             return 0;
         }
-        if(dp[tar]!=-1)return dp[tar];
+        if(dp[tar]!=0)return dp[tar];
         int count = (int)1e9;
         for (int i = 0; i < coins.length; i++) {
             if (tar - coins[i] >= 0) {
