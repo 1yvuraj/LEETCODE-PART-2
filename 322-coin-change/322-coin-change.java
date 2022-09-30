@@ -2,7 +2,8 @@ class Solution {
     public int coinChange(int[] coins, int target) {
         int[]dp = new int[target + 1];
         Arrays.fill(dp, -1);
-        return coinChangeCombination_IN(coins, target, "", dp)==1000000001?-1: coinChangeCombination_IN(coins, target, "", dp);
+        int ans=coinChangeCombination_IN(coins, target, "", dp);
+        return ans==1000000001?-1:ans;
     }
     public static int coinChangeCombination_IN(int[] coins, int tar, String psf,int[]dp) {
         if (tar == 0) {
