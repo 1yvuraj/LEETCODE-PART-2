@@ -1,5 +1,4 @@
 class Solution {
-
     public int combinationSum4(int[] coins, int target) {
         int[] dp = new int[target+1];
         Arrays.fill(dp,-1);
