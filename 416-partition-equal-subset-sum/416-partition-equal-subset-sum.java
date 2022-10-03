@@ -5,20 +5,22 @@ class Solution {
         if(sum%2!=0)return false;
         int tar=sum/2;
         Boolean[][]dp=new Boolean[tar+1][nums.length+1];
-        return coinChangeCombination_Sin(nums,tar,0,dp);
+        return coinChangeCombination_Sin(nums,tar,nums.length,dp);
     }
     public  boolean coinChangeCombination_Sin(int[] coins, int tar, int idx, Boolean[][]dp) {
-    if (tar == 0) {
+    if (idx==0 || tar == 0) {
        
-        return true;
+        return tar==0?true:false;
     }
+    if(tar<0)return false;
     if(dp[tar][idx]!=null)return dp[tar][idx];
     boolean count = false;
-    for (int i = idx; i < coins.length; i++) {
-        if (tar - coins[i] >= 0) {
-            count = count || coinChangeCombination_Sin(coins, tar - coins[i], i + 1,dp);
+   
+        if (tar - coins[idx -1] >= 0) {
+            count = count || coinChangeCombination_Sin(coins, tar - coins[idx-1], idx-1,dp);
         }
-    }
+         count = count || coinChangeCombination_Sin(coins, tar, idx -1,dp);
+    
     return dp[tar][idx]=count;
 }
 }
