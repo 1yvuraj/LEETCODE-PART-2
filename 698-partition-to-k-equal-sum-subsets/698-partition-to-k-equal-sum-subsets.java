@@ -18,11 +18,11 @@ class Solution {
         }
         boolean res = false;
         for (int i = idx; i < nums.length; i++) {
-            if (tar - nums[i] >= 0 && nums[i]>-1) {
+            if (nums[i] > -1) {
                 int val = nums[i];
-                nums[i]=-1;
+                nums[i] = -1;
                 res = res || check(nums, i + 1, sumsf + val, tar, k);
-                nums[i]=val;
+                nums[i] = val;
             }
         }
         return res;
