@@ -6,7 +6,7 @@ class Solution {
             sum += val;
             max = Math.max(max, val);
         }
-        if (sum % k == 1 || max > sum / k) return false;
+        if (sum % k != 0 || max > sum / k) return false;
         return check(nums, 0, 0, sum / k, k);
     }
 
