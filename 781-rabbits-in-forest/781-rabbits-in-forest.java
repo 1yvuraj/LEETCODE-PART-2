@@ -1,18 +1,16 @@
 class Solution {
-    public int numRabbits(int[] answers) {
+    public int numRabbits(int[] arr) {
         HashMap<Integer,Integer>map=new HashMap<>();
-        int ans=0;
-        for(int i=0;i<answers.length;i++){
-            if(map.containsKey(answers[i])){
-                
-                map.put(answers[i],map.get(answers[i])+1);
-                
-            }else {
-                  map.put(answers[i],1);
-                 ans+=answers[i]+1;
+        for(int i=0;i<arr.length;i++){
+            if(map.containsKey(arr[i])){
+                map.put(arr[i],map.get(arr[i])+1);
+            }else{
+                map.put(arr[i],1);
             }
-            if(map.get(answers[i])==(answers[i]+1))map.remove(answers[i]);
-            
+        }
+        int ans=0;
+        for(int key:map.keySet()){
+           ans+=(int)Math.ceil(map.get(key)*1.0/(key+1)*1.0)*(key+1);
         }
         return ans;
     }
