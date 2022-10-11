@@ -128,6 +128,8 @@ class Solution {
     }
     public boolean help(Node root,int level) {
         if(root==null)return true;
+        boolean l=help(root.left,level+1);
+        boolean r= help(root.right,level+1);
         if(root.left==null && root.right==null)
         {
             if(y==-1)
@@ -137,8 +139,6 @@ class Solution {
             }
             return y==level;
         }
-        boolean l=help(root.left,level+1);
-        boolean r= help(root.right,level+1);
         return l&&r;
         
 
