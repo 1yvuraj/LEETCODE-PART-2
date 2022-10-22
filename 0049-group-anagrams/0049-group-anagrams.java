@@ -14,6 +14,13 @@ class Solution {
                  map.get(s).add(strs[i]);
             }
         }
-        return new ArrayList<>(map.values());
+        for(int i=0;i<strs.length;i++){
+            char[]str=strs[i].toCharArray();
+            Arrays.sort(str);
+            String s=new String(str);
+            if(map.containsKey(s))a.add(map.get(s));
+            map.remove(s);
+        }
+        return a;
     }
 }
