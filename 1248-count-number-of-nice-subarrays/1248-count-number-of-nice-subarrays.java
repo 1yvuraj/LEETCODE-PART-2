@@ -1,29 +1,25 @@
 class Solution {
 
     public int numberOfSubarrays(int[] nums, int k) {
-        return help(nums, k) - help(nums, k - 1);
-    }
-
-    public int help(int[] nums, int k) {
-        int n = nums.length, si = 0, ei = 0, count = 0, len = 0;
-        while (ei < n) {
-            //kuki distict character dekhne hai to zero kia hai
-            if (nums[ei] % 2 == 1) {
-                count++;
-            }
-
-            ei++;
-            //kuki do distint hone chia
-            while (count > k) {
-                //matlb 2 distint character bache hai to count decrese
-
-                if (nums[si] % 2 == 1) {
-                    count--;
-                }
-                si++;
-            }
-            len += ei - si;
+        HashMap<Integer,Integer>map=new HashMap<>();
+        int sum=0;
+        int ans=0;
+        map.put(0,1);
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]%2==1)nums[i]=1;
+            else nums[i]=0;
         }
-        return len;
+        for(int i=0;i<nums.length;i++){
+            sum+=nums[i];
+            if(map.containsKey(sum-k)){
+                ans+=map.get(sum-k);
+            }
+            if(map.containsKey(sum)){
+                map.put(sum,map.get(sum)+1);
+            }else{
+                map.put(sum,1);
+            }
+        }
+        return ans;
     }
 }
