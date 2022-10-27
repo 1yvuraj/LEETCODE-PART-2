@@ -35,16 +35,24 @@ class Solution{
         int[][]dp=new int[arr.length+1][arr.length+1];
         return help(arr,0,arr.length-1,dp);
     }
-    static int help(int arr[],int si,int ei,int[][]dp)
+    static int help(int arr[],int SI,int EI,int[][]dp)
     {
-         if(ei-si==1)return dp[si][ei]=0;
-         if(dp[si][ei]!=0)return dp[si][ei];
-         int ans=(int)1e9;
-         for(int cut=si+1;cut<ei;cut++){
-             int left=help(arr,si,cut,dp);
-             int right=help(arr,cut,ei,dp);
-             ans=Math.min(ans,left+arr[si]*arr[ei]*arr[cut]+right);
-         }
-         return dp[si][ei]=ans;
+        for(int gap=0;gap<arr.length;gap++){
+            for(int  si=0,ei=gap;ei<arr.length;si++,ei++){
+              if(ei-si==1){
+                  dp[si][ei]=0;
+                  continue;
+              } 
+             int ans=(int)1e9;
+             for(int cut=si+1;cut<ei;cut++){
+                 int left=dp[si][cut];
+                 int right=dp[cut][ei];
+                 ans=Math.min(ans,left+arr[ei]*arr[si]*arr[cut]+right);
+             }
+              dp[si][ei]=ans;
+            }
+        }
+        return dp[SI][EI];
+         
     }
 }
