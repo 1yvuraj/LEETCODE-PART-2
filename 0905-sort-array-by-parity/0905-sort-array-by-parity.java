@@ -1,13 +1,24 @@
 class Solution {
     public int[] sortArrayByParity(int[] nums) {
+        // int si=0,ei=0;
+        // while(ei<nums.length){
+        //     while(ei<nums.length && nums[ei]%2!=0){
+        //         ei++;
+        //     }
+        //     swap(si,ei,nums);
+        //     si++;
+        //     ei++;
+        // }
+        // return nums;
         int si=0,ei=0;
         while(ei<nums.length){
-            while(ei<nums.length && nums[ei]%2!=0){
+            if(nums[ei]%2==0){
+                swap(si,ei,nums);
+                si++;
+                ei++;
+            }else{
                 ei++;
             }
-            swap(si,ei,nums);
-            si++;
-            ei++;
         }
         return nums;
         
