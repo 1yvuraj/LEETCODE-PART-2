@@ -6,6 +6,7 @@ class Solution {
         for(int i=0;i<grid.length;i++){
             for(int j=0;j<grid[0].length;j++){
                 if(grid[i][j]==1){
+                    grid[i][j]=0;
                  max=Math.max(max,help(grid,i,j));
                 }
             }
@@ -13,7 +14,7 @@ class Solution {
         return max==-(int)1e9?0:max;
     }
     public int help(int[][] grid,int sr,int sc) {
-        grid[sr][sc]=0;
+        
         int size=0;
         for(int []d:dir){
             int r=sr+d[0];
