@@ -7,15 +7,15 @@ class Solution {
     }
 
     public int getMax(int[] nums, int firstLen, int secondLen) {
-        int[] arr = new int[nums.length];
+        int[] left = new int[nums.length];
         int sum = 0;
         for (int i = 0; i < nums.length; i++) {
             sum += nums[i];
             if (i == firstLen - 1) {
-                arr[i] = sum;
+                left[i] = sum;
             } else if (i >= firstLen) {
                 sum -= nums[i - firstLen];
-                arr[i] = Math.max(sum, arr[i - 1]);
+                left[i] = Math.max(sum, left[i - 1]);
             }
         }
         int[] right = new int[nums.length];
@@ -31,7 +31,7 @@ class Solution {
         }
         sum = 0;
         for (int i = 0; i < nums.length-1; i++) {
-            sum = Math.max(sum, arr[i] + right[i + 1]);
+            sum = Math.max(sum, left[i] + right[i + 1]);
         }
         return sum;
     }
