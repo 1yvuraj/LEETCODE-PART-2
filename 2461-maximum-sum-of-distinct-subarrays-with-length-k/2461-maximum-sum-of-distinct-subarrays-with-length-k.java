@@ -17,8 +17,8 @@ class Solution {
             } else {
                 i = j;
                 set = new HashSet<>();
-                sum = nums[i];
-                set.add(nums[i]);
+                sum = nums[j];
+                set.add(nums[j]);
                 
             }
             j++;
