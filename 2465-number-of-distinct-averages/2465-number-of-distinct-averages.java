@@ -1,10 +1,11 @@
 class Solution {
     public int distinctAverages(int[] nums) {
-        HashSet<Integer>set=new HashSet<>();
+        HashSet<Double>set=new HashSet<>();
         Arrays.sort(nums);
         int i=0,r=nums.length-1;
         while(i<r){
-            set.add(nums[i]+nums[r]);
+            Double sum=(nums[i]+nums[r])/2.0;
+            set.add(sum);
             i++;
             r--;
         }
