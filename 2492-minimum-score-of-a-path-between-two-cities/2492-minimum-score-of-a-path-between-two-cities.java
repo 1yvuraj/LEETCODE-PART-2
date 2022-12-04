@@ -1,6 +1,6 @@
 class Solution {
     int ans=(int)1e9;
-    public class pair implements Comparable<pair> {
+     public class pair  {
         int v;
         int d;
 
@@ -8,12 +8,7 @@ class Solution {
             this.d = d;
             this.v = v;
         }
-
-        public int compareTo(pair o) {
-            return this.d - o.d;
-        }
-    }
-
+     }
     public int minScore(int n, int[][] roads) {
         ArrayList<ArrayList<pair>> graph = new ArrayList<>();
         boolean[]visied=new boolean[n+1];
@@ -25,18 +20,23 @@ class Solution {
             graph.get(r[1]).add(new pair(r[0], r[2]));
         }
         ans=Integer.MAX_VALUE;
-        DFS(1,graph,visied);
+        LinkedList<Integer>pq=new LinkedList<>();
+        pq.add(1);
+        while (pq.size() > 0) {
+            int size = pq.size();
+            while (size-- > 0) {
+                int rem = pq.removeFirst();
+                if (visied[rem]) continue;
+                visied[rem]=true;
+                
+                for (pair nbr : graph.get(rem)) {
+                    pq.addLast(nbr.v);
+                    ans=Math.min(ans, nbr.d);
+                }
+            }
+        }
+      
         return ans;
     }
 
-    public void DFS(int v,ArrayList<ArrayList<pair>> graph, boolean visited[]) {
-        visited[v] = true;
-        for (pair p : graph.get(v)) {
-            // keep track of min edge weight
-            ans = Math.min(ans, p.d);
-            if (visited[p.v] == false) {
-                DFS(p.v, graph, visited);
-            }
-        }
-    }
 }
