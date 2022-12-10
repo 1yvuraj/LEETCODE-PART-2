@@ -16,7 +16,7 @@ class Solution {
             int sum = vals[i];
             ArrayList<Integer>list=graph.get(i);
             list.sort((a, b) -> vals[b]-vals[a]);
-            max = sum;
+            max = vals[i];
             for (int s = 0; s < k && s<list.size(); s++) {
                 sum += vals[list.get(s)];
                 max = Math.max(max, sum);
