@@ -21,8 +21,8 @@ class Solution {
         long ans = 0;
         for (int nbr : graph.get(root)) {
             String x=root+" "+nbr;
-            if (nbr != par) {   
-               if(map.get(x)==null) map.put(x,dfs(graph, price, nbr, root, map));
+            if (nbr != par) {
+                if (map.get(x) == null) map.put(x, dfs(graph, price, nbr, root, map));
                 ans = Math.max(ans, map.get(x));
             }
         }
@@ -30,9 +30,6 @@ class Solution {
         return ans + price[root];
     }
 }
-
-
-    
 //     private long dfs(int curr,int prev,List<List<Integer>> adj,Map<String,Long> dp,int[] prices) {
 //         long max = 0;
 //         for(int child:adj.get(curr)){
