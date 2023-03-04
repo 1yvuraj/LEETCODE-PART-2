@@ -60,5 +60,6 @@ class Solution {
          dfs(sr,sc-1,er,ec,grid);
           ans+='U';
          dfs(sr-1,sc,er,ec,grid);
+         ans+='B';
     }
 }
