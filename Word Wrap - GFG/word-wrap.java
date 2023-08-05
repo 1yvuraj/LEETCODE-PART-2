@@ -29,14 +29,14 @@ class Solution
 {
     public int solveWordWrap (int[] nums, int k)
     {
-        int[][] dp = new int[nums.length+1][2101];
+        int[][] dp = new int[nums.length+1][3101];
         for(int i=0;i<dp.length;i++)Arrays.fill(dp[i],-1);
         return help(nums,k,0,k,dp);
     }
      public int help (int[] nums, int k,int i,int rem,int[][]dp)
     {
         if(i==nums.length)return 0;
-        if(dp[i][rem+100]!=-1)return dp[i][rem+100];
+        if(dp[i][rem+1000]!=-1)return dp[i][rem+1000];
         int ans=0;
         if(nums[i]>rem){
             //ye line ki matlb next line me dalna hai word 
@@ -50,6 +50,6 @@ class Solution
             option2=help(nums,k,i+1,rem-nums[i]-1,dp);
             ans=Math.min(option1,option2);
         }
-        return dp[i][rem+100]=ans;
+        return dp[i][rem+1000]=ans;
     }
 }
